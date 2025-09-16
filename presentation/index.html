@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domain-Driven Design with .NET 8 - Training Presentation</title>
+    <link rel="stylesheet" href="css/presentation.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Navigation -->
+        <nav class="presentation-nav">
+            <div class="nav-controls">
+                <button id="prevBtn" class="nav-btn"><i class="fas fa-chevron-left"></i></button>
+                <span id="slideCounter" class="slide-counter">1 / 15</span>
+                <button id="nextBtn" class="nav-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="nav-menu">
+                <button id="menuBtn" class="menu-btn"><i class="fas fa-bars"></i></button>
+                <div id="slideMenu" class="slide-menu">
+                    <div class="menu-item" data-slide="0">Introduction</div>
+                    <div class="menu-item" data-slide="1">What is DDD?</div>
+                    <div class="menu-item" data-slide="2">DDD Benefits</div>
+                    <div class="menu-item" data-slide="3">Clean Architecture</div>
+                    <div class="menu-item" data-slide="4">Project Structure</div>
+                    <div class="menu-item" data-slide="5">Domain Layer</div>
+                    <div class="menu-item" data-slide="6">Entities & Value Objects</div>
+                    <div class="menu-item" data-slide="7">Domain Events</div>
+                    <div class="menu-item" data-slide="8">Application Layer</div>
+                    <div class="menu-item" data-slide="9">CQRS Pattern</div>
+                    <div class="menu-item" data-slide="10">Infrastructure Layer</div>
+                    <div class="menu-item" data-slide="11">API Layer</div>
+                    <div class="menu-item" data-slide="12">Windsurf Tips</div>
+                    <div class="menu-item" data-slide="13">Best Practices</div>
+                    <div class="menu-item" data-slide="14">Q&A</div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Slides Container -->
+        <div class="slides-container">
+            
+            <!-- Slide 1: Introduction -->
+            <div class="slide active" data-slide="0">
+                <div class="slide-content">
+                    <h1 class="slide-title">Domain-Driven Design with .NET 8</h1>
+                    <h2 class="slide-subtitle">Building Scalable Applications with Clean Architecture</h2>
+                    <div class="intro-content">
+                        <div class="intro-points">
+                            <div class="point">
+                                <i class="fas fa-code"></i>
+                                <span>Practical DDD Implementation</span>
+                            </div>
+                            <div class="point">
+                                <i class="fas fa-layer-group"></i>
+                                <span>Clean Architecture Principles</span>
+                            </div>
+                            <div class="point">
+                                <i class="fas fa-rocket"></i>
+                                <span>Windsurf AI Productivity Tips</span>
+                            </div>
+                        </div>
+                        <div class="presenter-info">
+                            <p><strong>Target Audience:</strong> Junior Developers</p>
+                            <p><strong>Duration:</strong> 45-60 minutes</p>
+                            <p><strong>Project:</strong> DDDTemplate - .NET 8 Example</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: What is DDD? -->
+            <div class="slide" data-slide="1">
+                <div class="slide-content">
+                    <h1 class="slide-title">What is Domain-Driven Design?</h1>
+                    <div class="two-column">
+                        <div class="column">
+                            <h3>Core Concepts</h3>
+                            <ul class="concept-list">
+                                <li><strong>Domain:</strong> The business problem you're solving</li>
+                                <li><strong>Model:</strong> Abstraction of the domain</li>
+                                <li><strong>Ubiquitous Language:</strong> Common vocabulary</li>
+                                <li><strong>Bounded Context:</strong> Clear boundaries</li>
+                            </ul>
+                        </div>
+                        <div class="column">
+                            <h3>Why DDD Matters</h3>
+                            <div class="benefit-card">
+                                <i class="fas fa-users"></i>
+                                <p>Better communication between developers and domain experts</p>
+                            </div>
+                            <div class="benefit-card">
+                                <i class="fas fa-cogs"></i>
+                                <p>More maintainable and flexible code</p>
+                            </div>
+                            <div class="benefit-card">
+                                <i class="fas fa-shield-alt"></i>
+                                <p>Reduced complexity in large systems</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: DDD Benefits -->
+            <div class="slide" data-slide="2">
+                <div class="slide-content">
+                    <h1 class="slide-title">Benefits of Domain-Driven Design</h1>
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h3>Clear Communication</h3>
+                            <p>Shared language between business and technical teams</p>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-puzzle-piece"></i>
+                            </div>
+                            <h3>Modular Design</h3>
+                            <p>Well-defined boundaries and responsibilities</p>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-expand-arrows-alt"></i>
+                            </div>
+                            <h3>Scalability</h3>
+                            <p>Easy to extend and modify business logic</p>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-bug"></i>
+                            </div>
+                            <h3>Testability</h3>
+                            <p>Business logic isolated and easy to test</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Clean Architecture -->
+            <div class="slide" data-slide="3">
+                <div class="slide-content">
+                    <h1 class="slide-title">Clean Architecture Overview</h1>
+                    <div class="architecture-diagram">
+                        <div class="arch-layer domain-layer">
+                            <h3>Domain Layer</h3>
+                            <p>Business Logic & Rules</p>
+                            <small>Entities, Value Objects, Domain Events</small>
+                        </div>
+                        <div class="arch-layer application-layer">
+                            <h3>Application Layer</h3>
+                            <p>Use Cases & Orchestration</p>
+                            <small>Commands, Queries, DTOs</small>
+                        </div>
+                        <div class="arch-layer infrastructure-layer">
+                            <h3>Infrastructure Layer</h3>
+                            <p>External Concerns</p>
+                            <small>Database, APIs, File System</small>
+                        </div>
+                        <div class="arch-layer api-layer">
+                            <h3>API Layer</h3>
+                            <p>User Interface</p>
+                            <small>Controllers, Endpoints</small>
+                        </div>
+                    </div>
+                    <div class="dependency-rule">
+                        <i class="fas fa-arrow-down"></i>
+                        <p><strong>Dependency Rule:</strong> Dependencies point inward toward the domain</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: Project Structure -->
+            <div class="slide" data-slide="4">
+                <div class="slide-content">
+                    <h1 class="slide-title">Our DDD Template Structure</h1>
+                    <div class="project-structure">
+                        <div class="folder-tree">
+                            <div class="folder">
+                                <i class="fas fa-folder"></i> DDDTemplate/
+                                <div class="subfolder">
+                                    <i class="fas fa-folder"></i> src/
+                                    <div class="subfolder">
+                                        <div class="project-folder domain">
+                                            <i class="fas fa-cube"></i> DDDTemplate.Domain
+                                            <span class="layer-badge">Core</span>
+                                        </div>
+                                        <div class="project-folder application">
+                                            <i class="fas fa-cogs"></i> DDDTemplate.Application
+                                            <span class="layer-badge">Use Cases</span>
+                                        </div>
+                                        <div class="project-folder infrastructure">
+                                            <i class="fas fa-database"></i> DDDTemplate.Infrastructure
+                                            <span class="layer-badge">Data</span>
+                                        </div>
+                                        <div class="project-folder api">
+                                            <i class="fas fa-globe"></i> DDDTemplate.API
+                                            <span class="layer-badge">Web</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="structure-explanation">
+                            <h3>Layer Responsibilities</h3>
+                            <ul>
+                                <li><strong>Domain:</strong> Business entities and rules</li>
+                                <li><strong>Application:</strong> Orchestrates domain objects</li>
+                                <li><strong>Infrastructure:</strong> Implements external interfaces</li>
+                                <li><strong>API:</strong> Exposes functionality via HTTP</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: Domain Layer Deep Dive -->
+            <div class="slide" data-slide="5">
+                <div class="slide-content">
+                    <h1 class="slide-title">Domain Layer - The Heart of DDD</h1>
+                    <div class="two-column">
+                        <div class="column">
+                            <h3>What Goes Here?</h3>
+                            <ul class="concept-list">
+                                <li><strong>Entities:</strong> Objects with identity and lifecycle</li>
+                                <li><strong>Value Objects:</strong> Immutable objects without identity</li>
+                                <li><strong>Domain Events:</strong> Things that happened in the domain</li>
+                                <li><strong>Domain Services:</strong> Operations that don't belong to entities</li>
+                                <li><strong>Repositories:</strong> Interfaces for data access</li>
+                            </ul>
+                        </div>
+                        <div class="column">
+                            <h3>Our Domain Structure</h3>
+                            <div class="code-block">
+<pre><code class="language-text">DDDTemplate.Domain/
+├── Entities/
+│   ├── Entity.cs          // Base entity
+│   └── Product.cs         // Product entity
+├── ValueObjects/
+│   ├── ValueObject.cs     // Base value object
+│   └── Money.cs           // Money value object
+├── Events/
+│   ├── IDomainEvent.cs    // Event interface
+│   └── ProductCreatedEvent.cs
+├── Exceptions/
+│   └── ProductDomainException.cs
+└── Interfaces/
+    ├── IEntity.cs
+    └── IRepository.cs</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: Entities & Value Objects -->
+            <div class="slide" data-slide="6">
+                <div class="slide-content">
+                    <h1 class="slide-title">Entities vs Value Objects</h1>
+                    <div class="two-column">
+                        <div class="column">
+                            <h3><i class="fas fa-cube"></i> Entity Example - Product</h3>
+                            <div class="code-block">
+<pre><code class="language-csharp">public class Product : Entity
+{
+    public string Name { get; private set; }
+    public string Description { get; private set; }
+    public Money Price { get; private set; }
+    public int StockQuantity { get; private set; }
+    public bool IsActive { get; private set; }
+
+    public Product(string name, string description, Money price, int stockQuantity)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+            throw new ProductDomainException("Product name cannot be empty");
+        
+        if (price == null)
+            throw new ProductDomainException("Product price cannot be null");
+
+        Name = name;
+        Description = description ?? string.Empty;
+        Price = price;
+        StockQuantity = stockQuantity;
+        IsActive = true;
+
+        AddDomainEvent(new ProductCreatedEvent(Id, Name, Price.Amount));
+    }
+
+    public void UpdatePrice(Money newPrice)
+    {
+        if (newPrice == null)
+            throw new ProductDomainException("Product price cannot be null");
+
+        var oldPrice = Price.Amount;
+        Price = newPrice;
+        MarkAsUpdated();
+
+        AddDomainEvent(new ProductPriceChangedEvent(Id, oldPrice, newPrice.Amount));
+    }
+
+    public void UpdateStock(int quantity)
+    {
+        if (quantity < 0)
+            throw new ProductDomainException("Stock quantity cannot be negative");
+
+        StockQuantity = quantity;
+        MarkAsUpdated();
+    }
+}</code></pre>
+                            </div>
+                            <p><strong>Key Points:</strong> Has identity (Id), mutable state, business logic, raises domain events</p>
+                        </div>
+                        
+                        <div class="column">
+                            <h3><i class="fas fa-gem"></i> Value Object Example - Money</h3>
+                            <div class="code-block">
+<pre><code class="language-csharp">public class Money : ValueObject
+{
+    public decimal Amount { get; private set; }
+    public string Currency { get; private set; }
+
+    public Money(decimal amount, string currency = "USD")
+    {
+        if (amount < 0)
+            throw new ArgumentException("Amount cannot be negative");
+        
+        if (string.IsNullOrWhiteSpace(currency))
+            throw new ArgumentException("Currency cannot be empty");
+
+        Amount = amount;
+        Currency = currency.ToUpperInvariant();
+    }
+
+    public Money Add(Money other)
+    {
+        if (Currency != other.Currency)
+            throw new InvalidOperationException("Cannot add money with different currencies");
+
+        return new Money(Amount + other.Amount, Currency);
+    }
+
+    public Money Subtract(Money other)
+    {
+        if (Currency != other.Currency)
+            throw new InvalidOperationException("Cannot subtract money with different currencies");
+
+        return new Money(Amount - other.Amount, Currency);
+    }
+
+    public Money Multiply(decimal factor)
+    {
+        return new Money(Amount * factor, Currency);
+    }
+
+    protected override IEnumerable<object> GetEqualityComponents()
+    {
+        yield return Amount;
+        yield return Currency;
+    }
+
+    // Operator overloads
+    public static Money operator +(Money left, Money right) => left.Add(right);
+    public static Money operator -(Money left, Money right) => left.Subtract(right);
+    public static Money operator *(Money money, decimal factor) => money.Multiply(factor);
+}</code></pre>
+                            </div>
+                            <p><strong>Key Points:</strong> No identity, immutable, equality by value, rich behavior</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 8: Domain Events -->
+            <div class="slide" data-slide="7">
+                <div class="slide-content">
+                    <h1 class="slide-title">Domain Events - Capturing What Happened</h1>
+                    <div class="two-column">
+                        <div class="column">
+                            <h3><i class="fas fa-bell"></i> Event Interface & Base</h3>
+                            <div class="code-block">
+<pre><code class="language-csharp">public interface IDomainEvent
+{
+    DateTime OccurredOn { get; }
+}
+
+// Entity base class with event support
+public abstract class Entity : IEntity
+{
+    private readonly List<IDomainEvent> _domainEvents = new();
+    
+    public Guid Id { get; protected set; } = Guid.NewGuid();
+    public DateTime CreatedAt { get; protected set; } = DateTime.UtcNow;
+    public DateTime? UpdatedAt { get; protected set; }
+    public bool IsDeleted { get; protected set; }
+
+    public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
+
+    public void AddDomainEvent(IDomainEvent eventItem)
+    {
+        _domainEvents.Add(eventItem);
+    }
+
+    public void ClearDomainEvents()
+    {
+        _domainEvents.Clear();
+    }
+
+    protected void MarkAsUpdated()
+    {
+        UpdatedAt = DateTime.UtcNow;
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="column">
+                            <h3><i class="fas fa-code"></i> Concrete Events</h3>
+                            <div class="code-block">
+<pre><code class="language-csharp">public class ProductCreatedEvent : IDomainEvent
+{
+    public Guid ProductId { get; }
+    public string ProductName { get; }
+    public decimal Price { get; }
+    public DateTime OccurredOn { get; }
+
+    public ProductCreatedEvent(Guid productId, string productName, decimal price)
+    {
+        ProductId = productId;
+        ProductName = productName;
+        Price = price;
+        OccurredOn = DateTime.UtcNow;
+    }
+}
+
+public class ProductPriceChangedEvent : IDomainEvent
+{
+    public Guid ProductId { get; }
+    public decimal OldPrice { get; }
+    public decimal NewPrice { get; }
+    public DateTime OccurredOn { get; }
+
+    public ProductPriceChangedEvent(Guid productId, decimal oldPrice, decimal newPrice)
+    {
+        ProductId = productId;
+        OldPrice = oldPrice;
+        NewPrice = newPrice;
+        OccurredOn = DateTime.UtcNow;
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="event-benefits">
+                        <h3>Why Domain Events?</h3>
+                        <div class="benefits-grid">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-unlink"></i>
+                                </div>
+                                <h4>Decouple Logic</h4>
+                                <p>Separate core business logic from side effects like notifications, logging</p>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-sync-alt"></i>
+                                </div>
+                                <h4>Eventual Consistency</h4>
+                                <p>Enable async processing and cross-aggregate updates</p>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-history"></i>
+                                </div>
+                                <h4>Audit Trail</h4>
+                                <p>Track what happened, when, and why in the domain</p>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                                <h4>Explicit Processes</h4>
+                                <p>Make business processes and workflows visible in code</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 9: Application Layer -->
+            <div class="slide" data-slide="8">
+                <div class="slide-content">
+                    <h1 class="slide-title">Application Layer - Orchestrating Use Cases</h1>
+                    <div class="two-column">
+                        <div class="column">
+                            <h3><i class="fas fa-paper-plane"></i> Command & Handler</h3>
+                            <div class="code-block">
+<pre><code class="language-csharp">public class CreateProductCommand : ICommand<ProductDto>
+{
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public decimal Price { get; set; }
+    public string Currency { get; set; } = "USD";
+    public int StockQuantity { get; set; }
+}
+
+public class CreateProductCommandHandler : ICommandHandler<CreateProductCommand, ProductDto>
+{
+    private readonly IRepository<Product> _productRepository;
+
+    public CreateProductCommandHandler(IRepository<Product> productRepository)
+    {
+        _productRepository = productRepository;
+    }
+
+    public async Task<ProductDto> HandleAsync(CreateProductCommand command, CancellationToken cancellationToken = default)
+    {
+        var money = new Money(command.Price, command.Currency);
+        var product = new Product(command.Name, command.Description, money, command.StockQuantity);
+
+        await _productRepository.AddAsync(product, cancellationToken);
+
+        return new ProductDto
+        {
+            Id = product.Id,
+            Name = product.Name,
+            Description = product.Description,
+            Price = product.Price.Amount,
+            Currency = product.Price.Currency,
+            StockQuantity = product.StockQuantity,
+            IsActive = product.IsActive,
+            CreatedAt = product.CreatedAt,
+            UpdatedAt = product.UpdatedAt
+        };
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="column">
+                            <h3><i class="fas fa-exchange-alt"></i> DTO & Interfaces</h3>
+                            <div class="code-block">
+<pre><code class="language-csharp">public class ProductDto
+{
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public decimal Price { get; set; }
+    public string Currency { get; set; }
+    public int StockQuantity { get; set; }
+    public bool IsActive { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime? UpdatedAt { get; set; }
+}
+
+// Command interfaces
+public interface ICommand<TResult>
+{
+}
+
+public interface ICommandHandler<TCommand, TResult>
+    where TCommand : ICommand<TResult>
+{
+    Task<TResult> HandleAsync(TCommand command, CancellationToken cancellationToken = default);
+}
+
+// Query interfaces
+public interface IQuery<TResult>
+{
+}
+
+public interface IQueryHandler<TQuery, TResult>
+    where TQuery : IQuery<TResult>
+{
+    Task<TResult> HandleAsync(TQuery query, CancellationToken cancellationToken = default);
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="layer-purpose">
+                        <h3>Application Layer Responsibilities</h3>
+                        <div class="benefits-grid">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-cogs"></i>
+                                </div>
+                                <h4>Orchestration</h4>
+                                <p>Coordinate domain objects to fulfill business use cases</p>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-bridge"></i>
+                                </div>
+                                <h4>Bridge Layer</h4>
+                                <p>Connect domain logic with infrastructure concerns</p>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h4>Cross-cutting</h4>
+                                <p>Handle validation, logging, security, transactions</p>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-plug"></i>
+                                </div>
+                                <h4>Interfaces</h4>
+                                <p>Define contracts for external dependencies</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 10: CQRS Pattern -->
+            <div class="slide" data-slide="9">
+                <div class="slide-content">
+                    <h1 class="slide-title">CQRS - Command Query Responsibility Segregation</h1>
+                    <div class="cqrs-principle">
+                        <h3>The CQRS Principle</h3>
+                        <p class="principle-text">
+                            "Separate the models for reading and writing data. Commands change state, Queries return data."
+                        </p>
+                    </div>
+                    
+                    <div class="two-column">
+                        <div class="column">
+                            <h4><i class="fas fa-edit"></i> Command Side (Write)</h4>
+                            <div class="code-block">
+<pre><code class="language-csharp">public class CreateProductCommand : ICommand<ProductDto>
+{
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public decimal Price { get; set; }
+    public string Currency { get; set; } = "USD";
+    public int StockQuantity { get; set; }
+}
+
+public class CreateProductCommandHandler 
+    : ICommandHandler<CreateProductCommand, ProductDto>
+{
+    private readonly IRepository<Product> _productRepository;
+
+    public CreateProductCommandHandler(IRepository<Product> productRepository)
+    {
+        _productRepository = productRepository;
+    }
+
+    public async Task<ProductDto> HandleAsync(
+        CreateProductCommand command, 
+        CancellationToken cancellationToken = default)
+    {
+        var money = new Money(command.Price, command.Currency);
+        var product = new Product(command.Name, command.Description, money, command.StockQuantity);
+        
+        await _productRepository.AddAsync(product, cancellationToken);
+        
+        return new ProductDto
+        {
+            Id = product.Id,
+            Name = product.Name,
+            Description = product.Description,
+            Price = product.Price.Amount,
+            Currency = product.Price.Currency,
+            StockQuantity = product.StockQuantity,
+            IsActive = product.IsActive,
+            CreatedAt = product.CreatedAt,
+            UpdatedAt = product.UpdatedAt
+        };
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="column">
+                            <h4><i class="fas fa-search"></i> Query Side (Read)</h4>
+                            <div class="code-block">
+<pre><code class="language-csharp">public class GetProductByIdQuery : IQuery<ProductDto>
+{
+    public Guid ProductId { get; set; }
+
+    public GetProductByIdQuery(Guid productId)
+    {
+        ProductId = productId;
+    }
+}
+
+public class GetProductByIdQueryHandler 
+    : IQueryHandler<GetProductByIdQuery, ProductDto>
+{
+    private readonly IRepository<Product> _productRepository;
+
+    public GetProductByIdQueryHandler(IRepository<Product> productRepository)
+    {
+        _productRepository = productRepository;
+    }
+
+    public async Task<ProductDto> HandleAsync(
+        GetProductByIdQuery query, 
+        CancellationToken cancellationToken = default)
+    {
+        var product = await _productRepository.GetByIdAsync(
+            query.ProductId, cancellationToken);
+        
+        if (product == null)
+            return null;
+
+        return new ProductDto
+        {
+            Id = product.Id,
+            Name = product.Name,
+            Description = product.Description,
+            Price = product.Price.Amount,
+            Currency = product.Price.Currency,
+            StockQuantity = product.StockQuantity,
+            IsActive = product.IsActive,
+            CreatedAt = product.CreatedAt,
+            UpdatedAt = product.UpdatedAt
+        };
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="layer-purpose">
+                        <h3>CQRS Benefits</h3>
+                        <div class="benefits-grid">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-expand-arrows-alt"></i>
+                                </div>
+                                <h4>Scalability</h4>
+                                <p>Scale read and write operations independently</p>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <h4>Performance</h4>
+                                <p>Optimize queries for specific read scenarios</p>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-code-branch"></i>
+                                </div>
+                                <h4>Separation</h4>
+                                <p>Clear distinction between read and write models</p>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h4>Security</h4>
+                                <p>Different permissions for commands vs queries</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 11: Infrastructure Layer -->
+            <div class="slide" data-slide="10">
+                <div class="slide-content">
+                    <h1 class="slide-title">Infrastructure Layer - External Concerns</h1>
+                    <div class="two-column">
+                        <div class="column">
+                            <h3><i class="fas fa-database"></i> Repository Implementation</h3>
+                            <div class="code-block">
+<pre><code class="language-csharp">public class Repository<T> : IRepository<T> where T : Entity
+{
+    protected readonly ApplicationDbContext _context;
+    protected readonly DbSet<T> _dbSet;
+
+    public Repository(ApplicationDbContext context)
+    {
+        _context = context;
+        _dbSet = context.Set<T>();
+    }
+
+    public async Task<T> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        return await _dbSet.FirstOrDefaultAsync(e => e.Id == id && !e.IsDeleted, cancellationToken);
+    }
+
+    public async Task<IReadOnlyList<T>> ListAllAsync(CancellationToken cancellationToken = default)
+    {
+        return await _dbSet.Where(e => !e.IsDeleted).ToListAsync(cancellationToken);
+    }
+
+    public async Task<IReadOnlyList<T>> ListAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
+    {
+        return await _dbSet.Where(predicate).Where(e => !e.IsDeleted).ToListAsync(cancellationToken);
+    }
+
+    public async Task<T> AddAsync(T entity, CancellationToken cancellationToken = default)
+    {
+        await _dbSet.AddAsync(entity, cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
+        return entity;
+    }
+
+    public async Task UpdateAsync(T entity, CancellationToken cancellationToken = default)
+    {
+        entity.MarkAsUpdated();
+        _dbSet.Update(entity);
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task DeleteAsync(T entity, CancellationToken cancellationToken = default)
+    {
+        entity.MarkAsDeleted();
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <h3><i class="fas fa-cogs"></i> DbContext with Domain Events</h3>
+                            <div class="code-block">
+<pre><code class="language-csharp">public class ApplicationDbContext : DbContext
+{
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+    {
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        // Apply configurations from assembly
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+
+        // Global query filter for soft delete
+        foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+        {
+            if (typeof(Entity).IsAssignableFrom(entityType.ClrType))
+            {
+                modelBuilder.Entity(entityType.ClrType)
+                    .HasQueryFilter(GetSoftDeleteFilter(entityType.ClrType));
+            }
+        }
+    }
+
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        // Dispatch domain events before saving
+        await DispatchDomainEventsAsync();
+        
+        return await base.SaveChangesAsync(cancellationToken);
+    }
+
+    private async Task DispatchDomainEventsAsync()
+    {
+        var domainEntities = ChangeTracker
+            .Entries<Entity>()
+            .Where(x => x.Entity.DomainEvents.Any())
+            .ToList();
+
+        var domainEvents = domainEntities
+            .SelectMany(x => x.Entity.DomainEvents)
+            .ToList();
+
+        domainEntities.ToList()
+            .ForEach(entity => entity.Entity.ClearDomainEvents());
+
+        // Here you would typically use a mediator or event dispatcher
+        foreach (var domainEvent in domainEvents)
+        {
+            // TODO: Implement domain event handling
+            await Task.CompletedTask;
+        }
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="layer-purpose">
+                        <h3>Infrastructure Responsibilities</h3>
+                        <div class="benefits-grid">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <h4>Data Persistence</h4>
+                                <p>Entity Framework Core, repositories, database configuration</p>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-bell"></i>
+                                </div>
+                                <h4>Event Dispatching</h4>
+                                <p>Handle domain events, integrate with message brokers</p>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h4>Cross-cutting</h4>
+                                <p>Logging, caching, security, external service integration</p>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-filter"></i>
+                                </div>
+                                <h4>Query Filters</h4>
+                                <p>Soft delete, tenant isolation, global query constraints</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 12: API Layer -->
+            <div class="slide" data-slide="11">
+                <div class="slide-content">
+                    <h1 class="slide-title">API Layer - Exposing Functionality</h1>
+                    <div class="two-column">
+                        <div class="column">
+                            <h3><i class="fas fa-globe"></i> Controller Implementation</h3>
+                            <div class="code-block">
+<pre><code class="language-csharp">[ApiController]
+[Route("api/[controller]")]
+public class ProductsController : ControllerBase
+{
+    private readonly ICommandHandler<CreateProductCommand, ProductDto> _createProductHandler;
+    private readonly IQueryHandler<GetProductByIdQuery, ProductDto> _getProductByIdHandler;
+
+    public ProductsController(
+        ICommandHandler<CreateProductCommand, ProductDto> createProductHandler,
+        IQueryHandler<GetProductByIdQuery, ProductDto> getProductByIdHandler)
+    {
+        _createProductHandler = createProductHandler;
+        _getProductByIdHandler = getProductByIdHandler;
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<ProductDto>> CreateProduct([FromBody] CreateProductCommand command)
+    {
+        try
+        {
+            var result = await _createProductHandler.HandleAsync(command);
+            return CreatedAtAction(nameof(GetProduct), new { id = result.Id }, result);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<ProductDto>> GetProduct(Guid id)
+    {
+        try
+        {
+            var query = new GetProductByIdQuery(id);
+            var result = await _getProductByIdHandler.HandleAsync(query);
+            
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <h3><i class="fas fa-plug"></i> Dependency Injection Setup</h3>
+                            <div class="code-block">
+<pre><code class="language-csharp">var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+// Add Entity Framework
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseInMemoryDatabase("DDDTemplateDb")); // Using InMemory for demo purposes
+
+// Register repositories
+builder.Services.AddScoped<IRepository<Product>, Repository<Product>>();
+
+// Register command handlers
+builder.Services.AddScoped<ICommandHandler<CreateProductCommand, ProductDto>, CreateProductCommandHandler>();
+
+// Register query handlers
+builder.Services.AddScoped<IQueryHandler<GetProductByIdQuery, ProductDto>, GetProductByIdQueryHandler>();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
+
+app.Run();</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="layer-purpose">
+                        <h3>API Layer Responsibilities</h3>
+                        <div class="benefits-grid">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-exchange-alt"></i>
+                                </div>
+                                <h4>HTTP Interface</h4>
+                                <p>RESTful endpoints, HTTP status codes, content negotiation</p>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h4>Input Validation</h4>
+                                <p>Model binding, data annotations, request validation</p>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-cogs"></i>
+                                </div>
+                                <h4>Orchestration</h4>
+                                <p>Route commands/queries to appropriate handlers</p>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <h4>Documentation</h4>
+                                <p>Swagger/OpenAPI, API versioning, response examples</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 13: Windsurf Productivity Tips -->
+            <div class="slide" data-slide="12">
+                <div class="slide-content">
+                    <h1 class="slide-title">🚀 Windsurf AI Productivity Tips</h1>
+                    <div class="windsurf-tips">
+                        <div class="tip-category">
+                            <h3><i class="fas fa-magic"></i> Code Generation</h3>
+                            <ul class="tip-list">
+                                <li><strong>Entity Creation:</strong> "Create a Customer entity with DDD patterns including validation and domain events"</li>
+                                <li><strong>Pattern Implementation:</strong> "Implement CQRS handlers for Order management with proper error handling"</li>
+                                <li><strong>Repository Pattern:</strong> "Generate repository interface and implementation for User entity with async methods"</li>
+                                <li><strong>Value Objects:</strong> "Create an Email value object with validation and equality comparison"</li>
+                                <li><strong>Test Generation:</strong> "Create comprehensive unit tests for ProductService including edge cases"</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tip-category">
+                            <h3><i class="fas fa-search"></i> Code Analysis & Review</h3>
+                            <ul class="tip-list">
+                                <li><strong>DDD Compliance:</strong> "Review this domain model for DDD violations and suggest improvements"</li>
+                                <li><strong>Architecture Review:</strong> "Analyze this clean architecture implementation for potential issues"</li>
+                                <li><strong>Performance Analysis:</strong> "Check this CQRS implementation for performance bottlenecks"</li>
+                                <li><strong>Security Review:</strong> "Review this API controller for security vulnerabilities"</li>
+                                <li><strong>Code Quality:</strong> "Suggest refactoring opportunities to improve maintainability"</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tip-category">
+                            <h3><i class="fas fa-tools"></i> Architecture Guidance</h3>
+                            <ul class="tip-list">
+                                <li><strong>Design Decisions:</strong> "Should Order be an entity or aggregate root? Explain the trade-offs"</li>
+                                <li><strong>Event Design:</strong> "Design domain events for an e-commerce checkout process"</li>
+                                <li><strong>Bounded Context:</strong> "Help me identify bounded contexts for a multi-tenant SaaS application"</li>
+                                <li><strong>Aggregate Design:</strong> "Design aggregates for a booking system with proper invariants"</li>
+                                <li><strong>Integration Patterns:</strong> "Recommend integration patterns between Order and Inventory contexts"</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tip-category">
+                            <h3><i class="fas fa-rocket"></i> Workflow Optimization</h3>
+                            <ul class="tip-list">
+                                <li><strong>Full Stack Generation:</strong> "Create complete CRUD operations for Invoice including API, handlers, and tests"</li>
+                                <li><strong>Documentation:</strong> "Generate comprehensive API documentation with examples for this controller"</li>
+                                <li><strong>DevOps Setup:</strong> "Set up CI/CD pipeline with Docker containerization and health checks"</li>
+                                <li><strong>Monitoring:</strong> "Implement logging, metrics, and observability for this microservice"</li>
+                                <li><strong>Migration Scripts:</strong> "Create Entity Framework migrations and seed data for development"</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="pro-tips">
+                        <h3>💡 Pro Tips for Maximum Productivity</h3>
+                        <div class="benefits-grid">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <h4>Be Specific & Contextual</h4>
+                                <p>Provide domain context, business rules, and technical constraints for better results</p>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-step-forward"></i>
+                                </div>
+                                <h4>Iterative Development</h4>
+                                <p>Start with MVP, then incrementally add features and ask for refinements</p>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-question-circle"></i>
+                                </div>
+                                <h4>Learn Through Questions</h4>
+                                <p>Ask "why", "how", and "what if" to understand patterns and principles</p>
+                            </div>
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-code-branch"></i>
+                                </div>
+                                <h4>Explore Alternatives</h4>
+                                <p>Request multiple approaches and compare trade-offs for informed decisions</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 14: Best Practices -->
+            <div class="slide" data-slide="13">
+                <div class="slide-content">
+                    <h1 class="slide-title">DDD Best Practices & Common Pitfalls</h1>
+                    <div class="two-column">
+                        <div class="column">
+                            <h3><i class="fas fa-check-circle"></i> Best Practices ✅</h3>
+                            <div class="practice-list good">
+                                <div class="practice-item">
+                                    <i class="fas fa-check"></i>
+                                    <div>
+                                        <strong>Start with the Domain Model</strong>
+                                        <p>Focus on business logic and rules before technical implementation</p>
+                                    </div>
+                                </div>
+                                <div class="practice-item">
+                                    <i class="fas fa-check"></i>
+                                    <div>
+                                        <strong>Use Ubiquitous Language</strong>
+                                        <p>Same terminology in code, documentation, and business discussions</p>
+                                    </div>
+                                </div>
+                                <div class="practice-item">
+                                    <i class="fas fa-check"></i>
+                                    <div>
+                                        <strong>Rich Domain Models</strong>
+                                        <p>Entities with behavior, not just data containers</p>
+                                    </div>
+                                </div>
+                                <div class="practice-item">
+                                    <i class="fas fa-check"></i>
+                                    <div>
+                                        <strong>Embrace Domain Events</strong>
+                                        <p>Decouple side effects and enable loose coupling</p>
+                                    </div>
+                                </div>
+                                <div class="practice-item">
+                                    <i class="fas fa-check"></i>
+                                    <div>
+                                        <strong>Test Domain Logic</strong>
+                                        <p>Comprehensive unit tests for business rules and invariants</p>
+                                    </div>
+                                </div>
+                                <div class="practice-item">
+                                    <i class="fas fa-check"></i>
+                                    <div>
+                                        <strong>Define Clear Boundaries</strong>
+                                        <p>Proper bounded contexts and aggregate boundaries</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <h3><i class="fas fa-times-circle"></i> Common Pitfalls ❌</h3>
+                            <div class="practice-list bad">
+                                <div class="practice-item">
+                                    <i class="fas fa-times"></i>
+                                    <div>
+                                        <strong>Anemic Domain Models</strong>
+                                        <p>Entities with only getters/setters and no business logic</p>
+                                    </div>
+                                </div>
+                                <div class="practice-item">
+                                    <i class="fas fa-times"></i>
+                                    <div>
+                                        <strong>Leaky Infrastructure</strong>
+                                        <p>Exposing database or external service details to domain</p>
+                                    </div>
+                                </div>
+                                <div class="practice-item">
+                                    <i class="fas fa-times"></i>
+                                    <div>
+                                        <strong>God Objects/Aggregates</strong>
+                                        <p>Entities that handle too many responsibilities</p>
+                                    </div>
+                                </div>
+                                <div class="practice-item">
+                                    <i class="fas fa-times"></i>
+                                    <div>
+                                        <strong>Over-Engineering</strong>
+                                        <p>Applying DDD patterns to simple CRUD applications</p>
+                                    </div>
+                                </div>
+                                <div class="practice-item">
+                                    <i class="fas fa-times"></i>
+                                    <div>
+                                        <strong>Ignoring Context Boundaries</strong>
+                                        <p>Creating one large model instead of bounded contexts</p>
+                                    </div>
+                                </div>
+                                <div class="practice-item">
+                                    <i class="fas fa-times"></i>
+                                    <div>
+                                        <strong>Technical Focus First</strong>
+                                        <p>Starting with database schema instead of domain model</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="key-takeaways">
+                        <h3>🎯 Key Success Factors</h3>
+                        <div class="takeaway-grid">
+                            <div class="takeaway">
+                                <strong>Collaborate with Domain Experts</strong>
+                            </div>
+                            <div class="takeaway">
+                                <strong>Iterate and Refine the Model</strong>
+                            </div>
+                            <div class="takeaway">
+                                <strong>Focus on Business Value</strong>
+                            </div>
+                            <div class="takeaway">
+                                <strong>Keep Learning and Adapting</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 15: Q&A -->
+            <div class="slide" data-slide="14">
+                <div class="slide-content">
+                    <h1 class="slide-title">Questions & Discussion</h1>
+                    <div class="qa-content">
+                        <div class="qa-intro">
+                            <h3>🤔 Let's Discuss & Learn Together!</h3>
+                            <p>Time to explore the DDDTemplate project, ask questions, and discuss how to apply these concepts to real-world scenarios.</p>
+                        </div>
+                        
+                        <div class="discussion-topics">
+                            <h3>💬 Discussion Topics</h3>
+                            <div class="benefits-grid">
+                                <div class="benefit-item">
+                                    <div class="benefit-icon">
+                                        <i class="fas fa-code"></i>
+                                    </div>
+                                    <h4>Code Walkthrough</h4>
+                                    <p>Explore the DDDTemplate implementation: entities, value objects, events, handlers</p>
+                                </div>
+                                <div class="benefit-item">
+                                    <div class="benefit-icon">
+                                        <i class="fas fa-lightbulb"></i>
+                                    </div>
+                                    <h4>Real-world Applications</h4>
+                                    <p>How to apply DDD patterns to e-commerce, booking systems, or your domain</p>
+                                </div>
+                                <div class="benefit-item">
+                                    <div class="benefit-icon">
+                                        <i class="fas fa-tools"></i>
+                                    </div>
+                                    <h4>Windsurf AI Workflows</h4>
+                                    <p>Share tips for using AI to accelerate DDD development and learning</p>
+                                </div>
+                                <div class="benefit-item">
+                                    <div class="benefit-icon">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                    <h4>Learning Path</h4>
+                                    <p>Next steps to master DDD, Clean Architecture, and advanced patterns</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="resources">
+                            <h3>📚 Learning Resources & Next Steps</h3>
+                            <ul class="resource-list">
+                                <li><strong>Essential Books:</strong> "Domain-Driven Design" by Eric Evans, "Clean Architecture" by Robert Martin, "Implementing DDD" by Vaughn Vernon</li>
+                                <li><strong>Microsoft Docs:</strong> .NET Application Architecture Guides, EF Core documentation, ASP.NET Core best practices</li>
+                                <li><strong>Hands-on Practice:</strong> Extend this template with Order, Customer, and Inventory aggregates</li>
+                                <li><strong>Advanced Topics:</strong> Event Sourcing, Microservices, Distributed Systems patterns</li>
+                                <li><strong>Community:</strong> DDD Community, .NET Foundation, Stack Overflow, GitHub discussions</li>
+                                <li><strong>Tools & Frameworks:</strong> MediatR, AutoMapper, FluentValidation, Serilog, Docker</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="thank-you">
+                            <h2>🎉 Thank You for Learning DDD!</h2>
+                            <p>Keep building amazing software with Domain-Driven Design and Windsurf AI! 🚀</p>
+                            <p><em>Remember: Great software starts with understanding the domain.</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="js/presentation.js"></script>
+</body>
+</html>

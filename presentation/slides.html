@@ -1,0 +1,360 @@
+<!-- Additional slides to be included in the main presentation -->
+
+<!-- Slide 6: Domain Layer Deep Dive -->
+<div class="slide" data-slide="5">
+    <div class="slide-content">
+        <h1 class="slide-title">Domain Layer - The Heart of DDD</h1>
+        <div class="two-column">
+            <div class="column">
+                <h3>What Goes Here?</h3>
+                <ul class="concept-list">
+                    <li><strong>Entities:</strong> Objects with identity and lifecycle</li>
+                    <li><strong>Value Objects:</strong> Immutable objects without identity</li>
+                    <li><strong>Domain Events:</strong> Things that happened in the domain</li>
+                    <li><strong>Domain Services:</strong> Operations that don't belong to entities</li>
+                    <li><strong>Repositories:</strong> Interfaces for data access</li>
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Our Domain Structure</h3>
+                <div class="code-block">
+<pre><code class="language-csharp">DDDTemplate.Domain/
+├── Entities/
+│   ├── Entity.cs          // Base entity
+│   └── Product.cs         // Product entity
+├── ValueObjects/
+│   ├── ValueObject.cs     // Base value object
+│   └── Money.cs           // Money value object
+├── Events/
+│   ├── IDomainEvent.cs    // Event interface
+│   └── ProductCreatedEvent.cs
+├── Exceptions/
+│   └── ProductDomainException.cs
+└── Interfaces/
+    ├── IEntity.cs
+    └── IRepository.cs</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 7: Entities & Value Objects -->
+<div class="slide" data-slide="6">
+    <div class="slide-content">
+        <h1 class="slide-title">Entities vs Value Objects</h1>
+        <div class="comparison-grid">
+            <div class="comparison-item entity-example">
+                <h3><i class="fas fa-cube"></i> Entity Example - Product</h3>
+                <div class="code-block">
+<pre><code class="language-csharp">public class Product : Entity
+{
+    public string Name { get; private set; }
+    public Money Price { get; private set; }
+    public int StockQuantity { get; private set; }
+
+    public Product(string name, Money price, int stock)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+            throw new ProductDomainException("Name required");
+        
+        Name = name;
+        Price = price;
+        StockQuantity = stock;
+        
+        AddDomainEvent(new ProductCreatedEvent(Id, Name));
+    }
+
+    public void UpdatePrice(Money newPrice)
+    {
+        var oldPrice = Price.Amount;
+        Price = newPrice;
+        AddDomainEvent(new ProductPriceChangedEvent(Id, oldPrice, newPrice.Amount));
+    }
+}</code></pre>
+                </div>
+                <div class="key-points">
+                    <p><strong>Key Points:</strong> Has identity (Id), mutable, raises domain events</p>
+                </div>
+            </div>
+            
+            <div class="comparison-item value-object-example">
+                <h3><i class="fas fa-gem"></i> Value Object Example - Money</h3>
+                <div class="code-block">
+<pre><code class="language-csharp">public class Money : ValueObject
+{
+    public decimal Amount { get; private set; }
+    public string Currency { get; private set; }
+
+    public Money(decimal amount, string currency = "USD")
+    {
+        if (amount < 0)
+            throw new ArgumentException("Amount cannot be negative");
+        
+        Amount = amount;
+        Currency = currency.ToUpperInvariant();
+    }
+
+    public Money Add(Money other)
+    {
+        if (Currency != other.Currency)
+            throw new InvalidOperationException("Different currencies");
+        
+        return new Money(Amount + other.Amount, Currency);
+    }
+
+    protected override IEnumerable<object> GetEqualityComponents()
+    {
+        yield return Amount;
+        yield return Currency;
+    }
+}</code></pre>
+                </div>
+                <div class="key-points">
+                    <p><strong>Key Points:</strong> No identity, immutable, equality by value</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 8: Domain Events -->
+<div class="slide" data-slide="7">
+    <div class="slide-content">
+        <h1 class="slide-title">Domain Events - Capturing What Happened</h1>
+        <div class="event-flow">
+            <div class="event-step">
+                <div class="step-number">1</div>
+                <h3>Event Interface</h3>
+                <div class="code-block">
+<pre><code class="language-csharp">public interface IDomainEvent
+{
+    DateTime OccurredOn { get; }
+}</code></pre>
+                </div>
+            </div>
+            
+            <div class="event-step">
+                <div class="step-number">2</div>
+                <h3>Concrete Event</h3>
+                <div class="code-block">
+<pre><code class="language-csharp">public class ProductCreatedEvent : IDomainEvent
+{
+    public Guid ProductId { get; }
+    public string ProductName { get; }
+    public decimal Price { get; }
+    public DateTime OccurredOn { get; }
+
+    public ProductCreatedEvent(Guid productId, string name, decimal price)
+    {
+        ProductId = productId;
+        ProductName = name;
+        Price = price;
+        OccurredOn = DateTime.UtcNow;
+    }
+}</code></pre>
+                </div>
+            </div>
+            
+            <div class="event-step">
+                <div class="step-number">3</div>
+                <h3>Event Handling</h3>
+                <div class="code-block">
+<pre><code class="language-csharp">// In ApplicationDbContext
+private async Task DispatchDomainEventsAsync()
+{
+    var domainEntities = ChangeTracker
+        .Entries<Entity>()
+        .Where(x => x.Entity.DomainEvents.Any())
+        .ToList();
+
+    var domainEvents = domainEntities
+        .SelectMany(x => x.Entity.DomainEvents)
+        .ToList();
+
+    // Clear events before handling
+    domainEntities.ForEach(entity => 
+        entity.Entity.ClearDomainEvents());
+
+    // Handle events (integrate with MediatR, etc.)
+    foreach (var domainEvent in domainEvents)
+    {
+        // Publish event to handlers
+    }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <div class="event-benefits">
+            <h3>Why Domain Events?</h3>
+            <div class="benefits-list">
+                <div class="benefit"><i class="fas fa-check"></i> Decouple domain logic from side effects</div>
+                <div class="benefit"><i class="fas fa-check"></i> Enable eventual consistency</div>
+                <div class="benefit"><i class="fas fa-check"></i> Support audit trails and notifications</div>
+                <div class="benefit"><i class="fas fa-check"></i> Make business processes explicit</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 9: Application Layer -->
+<div class="slide" data-slide="8">
+    <div class="slide-content">
+        <h1 class="slide-title">Application Layer - Orchestrating Use Cases</h1>
+        <div class="application-overview">
+            <div class="layer-purpose">
+                <h3>Purpose & Responsibilities</h3>
+                <ul class="responsibility-list">
+                    <li><i class="fas fa-cogs"></i> Orchestrate domain objects to fulfill use cases</li>
+                    <li><i class="fas fa-exchange-alt"></i> Coordinate between domain and infrastructure</li>
+                    <li><i class="fas fa-shield-alt"></i> Handle cross-cutting concerns (validation, logging)</li>
+                    <li><i class="fas fa-plug"></i> Define interfaces for external dependencies</li>
+                </ul>
+            </div>
+            
+            <div class="application-structure">
+                <h3>Our Application Structure</h3>
+                <div class="structure-diagram">
+                    <div class="app-component commands">
+                        <i class="fas fa-paper-plane"></i>
+                        <h4>Commands</h4>
+                        <p>Write operations that change state</p>
+                        <small>CreateProductCommand</small>
+                    </div>
+                    <div class="app-component queries">
+                        <i class="fas fa-search"></i>
+                        <h4>Queries</h4>
+                        <p>Read operations that return data</p>
+                        <small>GetProductByIdQuery</small>
+                    </div>
+                    <div class="app-component dtos">
+                        <i class="fas fa-exchange-alt"></i>
+                        <h4>DTOs</h4>
+                        <p>Data transfer objects for API</p>
+                        <small>ProductDto</small>
+                    </div>
+                    <div class="app-component handlers">
+                        <i class="fas fa-cog"></i>
+                        <h4>Handlers</h4>
+                        <p>Process commands and queries</p>
+                        <small>CommandHandler, QueryHandler</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 10: CQRS Pattern -->
+<div class="slide" data-slide="9">
+    <div class="slide-content">
+        <h1 class="slide-title">CQRS - Command Query Responsibility Segregation</h1>
+        <div class="cqrs-explanation">
+            <div class="cqrs-concept">
+                <h3>The CQRS Principle</h3>
+                <p class="principle-text">
+                    "Separate the models for reading and writing data. Commands change state, Queries return data."
+                </p>
+            </div>
+            
+            <div class="cqrs-flow">
+                <div class="flow-side command-side">
+                    <h4><i class="fas fa-edit"></i> Command Side (Write)</h4>
+                    <div class="code-example">
+                        <h5>Command</h5>
+                        <div class="code-block">
+<pre><code class="language-csharp">public class CreateProductCommand : ICommand<ProductDto>
+{
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+    public string Currency { get; set; } = "USD";
+    public int StockQuantity { get; set; }
+}</code></pre>
+                        </div>
+                        
+                        <h5>Handler</h5>
+                        <div class="code-block">
+<pre><code class="language-csharp">public class CreateProductCommandHandler 
+    : ICommandHandler<CreateProductCommand, ProductDto>
+{
+    private readonly IRepository<Product> _repository;
+
+    public async Task<ProductDto> HandleAsync(
+        CreateProductCommand command, 
+        CancellationToken cancellationToken = default)
+    {
+        var money = new Money(command.Price, command.Currency);
+        var product = new Product(command.Name, "", money, command.StockQuantity);
+        
+        await _repository.AddAsync(product, cancellationToken);
+        
+        return MapToDto(product);
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flow-side query-side">
+                    <h4><i class="fas fa-search"></i> Query Side (Read)</h4>
+                    <div class="code-example">
+                        <h5>Query</h5>
+                        <div class="code-block">
+<pre><code class="language-csharp">public class GetProductByIdQuery : IQuery<ProductDto>
+{
+    public Guid ProductId { get; set; }
+
+    public GetProductByIdQuery(Guid productId)
+    {
+        ProductId = productId;
+    }
+}</code></pre>
+                        </div>
+                        
+                        <h5>Handler</h5>
+                        <div class="code-block">
+<pre><code class="language-csharp">public class GetProductByIdQueryHandler 
+    : IQueryHandler<GetProductByIdQuery, ProductDto>
+{
+    private readonly IRepository<Product> _repository;
+
+    public async Task<ProductDto> HandleAsync(
+        GetProductByIdQuery query, 
+        CancellationToken cancellationToken = default)
+    {
+        var product = await _repository.GetByIdAsync(
+            query.ProductId, cancellationToken);
+        
+        return product == null ? null : MapToDto(product);
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cqrs-benefits">
+                <h3>CQRS Benefits</h3>
+                <div class="benefits-grid-small">
+                    <div class="benefit-small">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Optimized read/write models</span>
+                    </div>
+                    <div class="benefit-small">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                        <span>Independent scaling</span>
+                    </div>
+                    <div class="benefit-small">
+                        <i class="fas fa-code"></i>
+                        <span>Cleaner code separation</span>
+                    </div>
+                    <div class="benefit-small">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Better security control</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
