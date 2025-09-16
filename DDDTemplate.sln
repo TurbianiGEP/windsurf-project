@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DDD-template", "DDD-template", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDTemplate.Domain", "src\DDDTemplate.Domain\DDDTemplate.Domain.csproj", "{2519B781-0509-4307-BA52-515B0E4A63E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDTemplate.Domain", "DDD-template\DDDTemplate.Domain\DDDTemplate.Domain.csproj", "{2519B781-0509-4307-BA52-515B0E4A63E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDTemplate.Application", "src\DDDTemplate.Application\DDDTemplate.Application.csproj", "{5D864535-6A13-4211-9C16-0E7D00C46C01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDTemplate.Application", "DDD-template\DDDTemplate.Application\DDDTemplate.Application.csproj", "{5D864535-6A13-4211-9C16-0E7D00C46C01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDTemplate.Infrastructure", "src\DDDTemplate.Infrastructure\DDDTemplate.Infrastructure.csproj", "{E70C19DA-6A8A-4B61-951C-085299848954}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDTemplate.Infrastructure", "DDD-template\DDDTemplate.Infrastructure\DDDTemplate.Infrastructure.csproj", "{E70C19DA-6A8A-4B61-951C-085299848954}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDTemplate.API", "src\DDDTemplate.API\DDDTemplate.API.csproj", "{B844421E-5012-4449-9BE3-22BE28D4E5D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDTemplate.API", "DDD-template\DDDTemplate.API\DDDTemplate.API.csproj", "{B844421E-5012-4449-9BE3-22BE28D4E5D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
